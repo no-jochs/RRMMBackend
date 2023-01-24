@@ -1,24 +1,14 @@
-# README
+# Refuge Recovery Meeting Manager Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application provides a backend API and services for clients to consume and manage the database of meeting information. It also supports interfacing with the datastore that houses all meeting information.
 
-Things you may want to cover:
+## Setup
+This application has been developed using Ruby version 3.1.2. Please make sure this version of Ruby is installed on your development machine.
 
-* Ruby version
+PostgreSQL is used as our relational datastore. Currently, we are using version 14.6 for development purposes. Please assure that your installation is running locally with a "postgres" superuser (which may be aliased to your localhost's username).
 
-* System dependencies
+### Application Dependencies
+After cloning this repository, `cd RRMMDbackend` and run `bundle install`.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Database Setup
+In a terminal, run `rails db:create` and then `rails db:migrate` to create the database and establish the schema.
