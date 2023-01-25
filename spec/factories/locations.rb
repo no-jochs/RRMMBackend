@@ -10,5 +10,7 @@ FactoryBot.define do
     postal_code { Faker::Address.postcode }
     url_slug { Faker::Internet.slug }
     venue_type { %i[in_person online hybrid].sample }
+    status { :approved }
+    timezone { Faker::Address.time_zone }
   end
 end

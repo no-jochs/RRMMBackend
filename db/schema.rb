@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_25_035154) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_25_073125) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,14 +27,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_035154) do
     t.integer "venue_type", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "timezone", default: "UTC", null: false
+    t.integer "status", default: 0, null: false
+    t.index ["url_slug"], name: "index_locations_on_url_slug", unique: true
   end
 
   create_table "meetings", force: :cascade do |t|
     t.string "name", null: false
     t.date "start_date", default: -> { "CURRENT_DATE" }, null: false
-    t.time "start_time", null: false
-    t.integer "duration", default: 3600, null: false
-    t.string "timezone", default: "UTC", null: false
+    t.integer "duration", default: 60, null: false
     t.text "notes"
     t.string "conference_link"
     t.json "group_resources", default: {}, null: false
@@ -45,6 +46,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_035154) do
     t.datetime "updated_at", null: false
     t.integer "day", default: 0, null: false
     t.boolean "visible", default: true
+    t.integer "status", default: 0, null: false
+    t.integer "start_time_hour", default: 12, null: false
+    t.integer "start_time_minute", default: 0, null: false
+    t.index ["url_slug"], name: "index_meetings_on_url_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|
