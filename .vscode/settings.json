@@ -1,0 +1,11 @@
+{
+  "ruby.useBundler": true,
+  "ruby.rubocop.useBundler": true,
+  "rufo.useBundler": true,
+  "solargraph.useBundler": false,
+  "editor.formatOnSave": true,
+  "editor.useBundler": true,
+  "[ruby]": {
+    "editor.defaultFormatter": "misogi.ruby-rubocop",
+  }
+}
