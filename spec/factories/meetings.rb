@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :meeting do
     name { "#{Faker::Company.name} Meeting" }
-    start_date { Date.today }
+    start_date { Date.current }
     start_time_hour { rand(24) }
     start_time_minute { rand(60) }
     duration { 60 }

@@ -5,12 +5,12 @@ FactoryBot.define do
     latitude { Faker::Address.latitude }
     longitude { Faker::Address.longitude }
     formatted_address { Faker::Address.full_address }
-    country { Faker::Address.country_code }
+    country_identifier { Faker::Address.country_code }
     state_providence { Faker::Address.state_abbr }
     postal_code { Faker::Address.postcode }
     url_slug { Faker::Internet.slug }
     venue_type { %i[in_person online hybrid].sample }
     status { :approved }
-    timezone { Faker::Address.time_zone }
+    timezone_identifier { Faker::Address.time_zone }
   end
 end

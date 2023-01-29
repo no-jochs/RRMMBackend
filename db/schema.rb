@@ -10,24 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_25_073125) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_29_042648) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
     t.text "notes"
-    t.decimal "latitude"
-    t.decimal "longitude"
+    t.decimal "latitude", precision: 15, scale: 12
+    t.decimal "longitude", precision: 15, scale: 12
     t.string "formatted_address"
-    t.string "country", null: false
+    t.string "country_identifier", null: false
     t.string "state_providence"
     t.string "postal_code"
     t.string "url_slug", null: false
     t.integer "venue_type", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "timezone", default: "UTC", null: false
+    t.string "timezone_identifier", null: false
     t.integer "status", default: 0, null: false
     t.index ["url_slug"], name: "index_locations_on_url_slug", unique: true
   end
