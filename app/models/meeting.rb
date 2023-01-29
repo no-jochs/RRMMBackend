@@ -16,12 +16,6 @@ class Meeting < ApplicationRecord
   enum :language, %i[english spanish french italian japanese chinese russian]
   enum :status, %i[approved requires_review requires_changes rejected]
 
-  def latitude=(lat)
-    raise ArgumentError, 'Latitude must be in interval [-90, 90]' if lat < -90 || lat > 90
-
-    latitude = lat
-  end
-
   private
 
   def start_date_cannot_be_in_the_past
