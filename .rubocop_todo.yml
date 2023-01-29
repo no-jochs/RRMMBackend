@@ -13,6 +13,8 @@ Style/Documentation:
     - 'app/mailers/application_mailer.rb'
     - 'app/models/application_record.rb'
     - 'config/application.rb'
+    - 'app/models/*'
+    - 'lib/classes/*'
 
 # Offense count: 21
 # This cop supports unsafe autocorrection (--autocorrect-all).

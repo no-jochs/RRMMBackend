@@ -1,7 +1,7 @@
 {
   "ruby.useBundler": true,
   "ruby.rubocop.useBundler": true,
-  "rufo.useBundler": true,
+  "rufo.useBundler": false,
   "solargraph.useBundler": false,
   "editor.formatOnSave": true,
   "editor.useBundler": true,
