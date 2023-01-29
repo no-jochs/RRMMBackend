@@ -9,6 +9,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    session.delete(:user_id)
+    render json: { message: 'Logged out.' }, status: :ok
+  end
+
   private
 
   def session_params

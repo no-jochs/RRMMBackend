@@ -4,7 +4,7 @@ RSpec.describe 'Sessions', type: :request do
   let(:password) { 'aAbBcCdD1234' }
   let(:user) { create(:user, password:) }
 
-  describe '/api/sessions' do
+  describe 'POST /api/sessions' do
     context 'with correct credentials' do
       it 'logs in an existing user' do
         post '/api/sessions', params: { user: { email: user.email, password: user.password } }
@@ -32,6 +32,13 @@ RSpec.describe 'Sessions', type: :request do
         post '/api/sessions', params: { user: { email: user.email, password: 'incorrect-password' } }
         expect(response.cookies['_session_id']).to be_nil
       end
+    end
+  end
+
+  describe 'DELETE /api/sessions' do
+    it 'resets the session' do
+      delete '/api/sessions'
+      expect(response).to have_http_status(:ok)
     end
   end
 end

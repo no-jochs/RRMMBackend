@@ -65,5 +65,6 @@ group :development do
 end
 
 group :test do
+  gem 'database_cleaner-active_record', '~> 2.0', '>= 2.0.1'
   gem 'pundit-matchers', '~> 1.8', '>= 1.8.4'
 end

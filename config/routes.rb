@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   scope '/api' do
-    resources :sessions, only: %i[create destroy]
+    resource :session, only: %i[create destroy], path: '/sessions'
   end
 end
