@@ -83,4 +83,4 @@ production:
   <<: *default
   database: RRMMBackend_production
   username: RRMMBackend
-  password: <%= ENV["RRMMBACKEND_DATABASE_PASSWORD"] %>
+  password: <%= ENV["DATABASE_URL"] %>
