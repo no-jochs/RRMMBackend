@@ -5,5 +5,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   scope '/api' do
     resource :session, only: %i[create destroy], path: '/sessions'
+
+    resources :locations do
+      resources :meetings
+    end
   end
 end
