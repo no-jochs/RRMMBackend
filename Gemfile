@@ -6,6 +6,8 @@ ruby '3.1.2'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4'
 
+gem 'sprockets-rails', '~> 3.4', '>= 3.4.2'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 
@@ -48,6 +50,8 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.18'
 gem 'countries', '~> 5.3'
 
 gem 'tzinfo', '~> 2.0', '>= 2.0.5'
+
+gem 'activeadmin', '~> 2.13', '>= 2.13.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
