@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root to: 'welcome#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -11,4 +10,6 @@ Rails.application.routes.draw do
       resources :meetings
     end
   end
+
+  get "*path", to "welcome#index"
 end
