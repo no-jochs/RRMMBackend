@@ -62,6 +62,7 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'guard-rspec', '~> 4.7', '>= 4.7.3', require: false
 end
 
 group :test do
