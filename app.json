@@ -1,0 +1,13 @@
+{
+  "environments": {
+    "test": {
+      "env": {
+        "RAILS_ENV": "test"
+      },
+      "scripts": {
+        "test-setup": "bundle install",
+        "test": "bundle exec rspec"
+      }
+    }
+  }
+}

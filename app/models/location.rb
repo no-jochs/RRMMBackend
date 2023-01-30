@@ -34,7 +34,7 @@ class Location < ApplicationRecord
       tz = ActiveSupport::TimeZone[tz_string]
       raise ArgumentError, "#{tz_string} is not a valid timezone." if tz.nil?
 
-      timezone_identifier = tz.name
+      self.timezone_identifier = tz.name
       tz
     end
   end
