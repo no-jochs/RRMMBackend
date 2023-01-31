@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RRMMBackend</title>
+    <title>Meeting Locator - Refuge Recovery</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= yield :head %>
   </head>
-
   <body>
+    <%
+=begin%>
+ <nav class="navbar">
+      <div class="container-xl">
+        <a class="navbar-brand d-flex justify-content-start align-items-center" href="#">
+          <img class="logo" src="goldonblack.png" alt="Refuge Recovery Logo"/>
+          <span class="brand-text">Refuge Recovery Meetings</span>
+        </a>
+      </div>
+    </nav> 
+<%
+=end%>
     <%= yield %>
   </body>
 </html>
