@@ -7,18 +7,22 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= yield :head %>
   </head>
-
   <body>
-    <nav class="navbar">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+    <%
+=begin%>
+ <nav class="navbar">
+      <div class="container-xl">
+        <a class="navbar-brand d-flex justify-content-start align-items-center" href="#">
           <img class="logo" src="goldonblack.png" alt="Refuge Recovery Logo"/>
           <span class="brand-text">Refuge Recovery Meetings</span>
         </a>
       </div>
-    </nav>
+    </nav> 
+<%
+=end%>
     <%= yield %>
   </body>
 </html>
