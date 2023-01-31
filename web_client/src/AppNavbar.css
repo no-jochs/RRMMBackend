@@ -1,0 +1,14 @@
+.app-navbar {
+  background-color: #a58529;
+  border-bottom: 2px solid darkgray;
+}
+
+.nav-logo {
+  height: 60px;
+}
+
+.nav-logo-text {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+}
