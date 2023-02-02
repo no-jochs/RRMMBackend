@@ -32,3 +32,5 @@ Dir["#{WEB_CLIENT_BUILD_PATH}/*"].each do |build_entry|
 end
 
 puts "Finished copying client build files!"
+
+exit 0

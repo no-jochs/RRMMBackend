@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+function log {
+  echo "#     $1"
+}
+
+function error {
+  echo "#!!!  ERROR: $1"
+}
+
+echo <<HEREDOC
+================================================================================
+                            BUILDING WEB CLIENT CODE
+================================================================================
+HEREDOC
+log 'Moving to client directory...'
+cd web_client
+
+log 'Verifying node installation...'
+if command -v node; then
+  log "Node is installed, $(node -v)"
+else
+  log "Node not installed!"
+  exit 2
+fi
+
+log 'Verifying NPM is installed...'
+if command -v npm; then
+  log "NPM is installed, $(npm -v)"
+else
+  error "NPM not installed!"
+  exit 3
+fi
+
+log 'Installing npm dependencies...'
+npm install
+
+if [[ $? ]]; then
+  log 'NPM packages installed successfully.'
+else
+  error 'NPM install failed!' && exit 4 }
+fi
+
+log 'Making production build...'
+
+if npm run deploy; then
+  log 'Production build completed successfully.'
+else
+  error 'Production build failed!' && exit 5
+fi
+
+log 'Moving production build assets...'
+if ../bin/move_client_build; then
+  log 'Moved production assets successfully.'
+else
+  error 'An error occurred while moving the client build!' && exit 6
+fi
+
+log 'Complete! Moving back to rails directory...'
+cd ..
+
+echo '================================================================================'
+exit 0
