@@ -1,0 +1,13 @@
+.cbg label {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 0.8rem;
+}
+
+.toggle-button-text {
+  display: inline-flex;
+  align-items: center;
+}
+
+.cbg-btn-label-icon {
+  margin-right: 0.3em;
+}

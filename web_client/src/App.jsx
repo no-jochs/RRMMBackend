@@ -1,8 +1,7 @@
-import logo from './logo.svg';
 import { Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import AppNavbar from './AppNavbar';
-import SearchHome from './SearchHome';
+import MeetingFinderHome from 'MeetingFinder/MeetingFinderHome';
 import ResultsList from './ResultsList';
 import ResultsMap from './ResultsMap';
 import MeetingDetail from './MeetingDetail';
@@ -16,7 +15,7 @@ function App() {
     <Container className="app-container" fluid>
       <AppNavbar />
       <Routes>
-        <Route path="/" element={<SearchHome />}>
+        <Route path="/" element={<MeetingFinderHome />}>
           <Route index element={<ResultsList />} />
           <Route path="map" element={<ResultsMap />} />
         </Route>
