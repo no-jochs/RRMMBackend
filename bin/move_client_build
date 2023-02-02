@@ -1,29 +1,33 @@
 #!/usr/bin/env ruby
 require 'fileutils'
 
-web_client_build_path = ENV["WEB_CLIENT_BUILD_PATH"] || File.absolute_path(Rails.root, "web_client", "build")
-rails_meeting_finder_index_path = ENV["RAILS_MEETING_FINDER_INDEX_PATH"] || File.absolute_path(Rails.root,"app","views","meeting_finder")
-rails_client_build_public_assets_path = ENV["RAILS_CLIENT_BUILD_PUBLIC_ASSETS_PATH"] || File.absolute_path(Rails.root, "public")
+WEB_CLIENT_BUILD_PATH = ENV["WEB_CLIENT_BUILD_PATH"] || File.expand_path(File.join(__dir__, "..", "web_client", "build"))
+RAILS_MEETING_FINDER_INDEX_PATH = ENV["RAILS_MEETING_FINDER_INDEX_PATH"] || File.expand_path(File.join(__dir__, "..","app","views","meeting_finder"))
+RAILS_CLIENT_BUILD_PUBLIC_ASSETS_PATH = ENV["RAILS_CLIENT_BUILD_PUBLIC_ASSETS_PATH"] || File.expand_path(File.join(__dir__, "..", "public"))
 
-unless Dir.exists?(web_client_build_path)
-  raise LoadError, "No directory located at #{web_client_build_path}."
+unless Dir.exists?(WEB_CLIENT_BUILD_PATH)
+  raise LoadError, "No directory located at #{WEB_CLIENT_BUILD_PATH}."
 end
 
-unless Dir.exists?(rails_meeting_finder_index_path)
-  raise LoadError, "No directory located at #{rails_meeting_finder_index_path}."
+unless Dir.exists?(RAILS_MEETING_FINDER_INDEX_PATH)
+  raise LoadError, "No directory located at #{RAILS_MEETING_FINDER_INDEX_PATH}."
+end
+
+unless Dir.exists?(RAILS_CLIENT_BUILD_PUBLIC_ASSETS_PATH)
+  raise LoadError, "No directory located at #{RAILS_CLIENT_BUILD_PUBLIC_ASSETS_PATH}."
 end
 
 # Copy over the index.html file
 
-Dir[web_client_build_path].each do |entry|
-  ap_entry = File.join(web_client_build_path, entry)
+Dir["#{WEB_CLIENT_BUILD_PATH}/*"].each do |build_entry|
+  build_entry_basename = File.basename(build_entry)
 
-  if File.file?(ap_entry) && entry == "index.html"
-    puts "Copying: #{ap_entry} -> #{File.join(rails_meeting_finder_index_path, entry)}"
-    FileUtils.copy_file(ap_entry, File.join(rails_meeting_finder_index_path, entry), remove_destination: true)
-  else
-    puts "Copying: #{ap_entry} -> #{File.join(web_client_build_path, entry)}"
-    FileUtils.copy_entry(ap_entry, File.join(rails_client_build_public_assets_path, entry),remove_destination: true)
+  if File.file?(build_entry) && build_entry_basename == "index.html"
+    puts "Copying: #{build_entry} -> #{File.join(RAILS_MEETING_FINDER_INDEX_PATH, build_entry_basename)}"
+    FileUtils.copy_file(build_entry, File.join(RAILS_MEETING_FINDER_INDEX_PATH, build_entry_basename), remove_destination: true)
+  elsif 
+    puts "Copying: #{build_entry} -> #{File.join(WEB_CLIENT_BUILD_PATH, build_entry_basename)}"
+    FileUtils.copy_entry(build_entry, File.join(RAILS_CLIENT_BUILD_PUBLIC_ASSETS_PATH, build_entry_basename),remove_destination: true)
   end
 end
 

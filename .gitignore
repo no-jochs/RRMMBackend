@@ -33,3 +33,13 @@ vendor/bundle
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# Ignore the meeting_finder/index view as it gets built from current clientside code
+/app/views/meeting_finder/index.html
+
+# Ignore everything in the public folder that's a result of the clientside build.
+!/public/404.html
+!/public/422.html
+!/public/500.html
+/public/*
+

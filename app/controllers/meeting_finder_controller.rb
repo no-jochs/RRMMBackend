@@ -1,5 +1,5 @@
 class MeetingFinderController < ApplicationController
   def index
-    render 'index', layout: :none, status: :ok
+    render 'index', layout: false, status: :ok
   end
 end
