@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 function log {
-  echo "#     $1"
+  echo "#LOG> $1"
 }
 
 function error {
-  echo "#!!!  ERROR: $1"
+  echo "#ERR> $1"
 }
 
 echo <<HEREDOC
@@ -15,6 +15,7 @@ echo <<HEREDOC
 HEREDOC
 log 'Moving to client directory...'
 cd web_client
+log "PWD: $(pwd)"
 
 log 'Verifying node installation...'
 if command -v node; then
