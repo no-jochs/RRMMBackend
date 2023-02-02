@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-function log {
+log() {
   echo "#LOG> $1"
 }
 
-function error {
+error() {
   echo "#ERR> $1"
 }
 
@@ -13,8 +13,10 @@ echo <<HEREDOC
                             BUILDING WEB CLIENT CODE
 ================================================================================
 HEREDOC
+
 log 'Moving to client directory...'
 cd web_client
+
 log "PWD: $(pwd)"
 
 log 'Verifying node installation...'
@@ -36,29 +38,20 @@ fi
 log 'Installing npm dependencies...'
 npm install
 
-if [[ $? ]]; then
-  log 'NPM packages installed successfully.'
-else
-  error 'NPM install failed!' && exit 4 }
-fi
-
 log 'Making production build...'
 
-if npm run deploy; then
-  log 'Production build completed successfully.'
-else
-  error 'Production build failed!' && exit 5
-fi
+npm run build && log 'Production build completed successfully.'
+
+log 'Moving back to rails directory...'
+cd ..
 
 log 'Moving production build assets...'
-if ../bin/move_client_build; then
+if ./bin/move_client_build; then
   log 'Moved production assets successfully.'
 else
   error 'An error occurred while moving the client build!' && exit 6
 fi
 
-log 'Complete! Moving back to rails directory...'
-cd ..
-
+log 'Finished!'
 echo '================================================================================'
 exit 0
