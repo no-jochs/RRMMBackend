@@ -1,18 +1,27 @@
 import React from "react";
+import GroupIcon from "@mui/icons-material/Group";
+import DevicesIcon from "@mui/icons-material/Devices";
+import CoPresentIcon from "@mui/icons-material/CoPresent";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import DiningIcon from "@mui/icons-material/Dining";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import CasinoIcon from '@mui/icons-material/Casino';
+import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
+import HandshakeIcon from '@mui/icons-material/Handshake';
 
 const days = [
-  { idx: 0, name: "Sunday", selectedDefault: true },
-  { idx: 1, name: "Monday", selectedDefault: true },
-  { idx: 2, name: "Tuesday", selectedDefault: true },
-  { idx: 3, name: "Wednesday", selectedDefault: true },
-  { idx: 4, name: "Thursday", selectedDefault: true },
-  { idx: 5, name: "Friday", selectedDefault: true },
-  { idx: 6, name: "Saturday", selectedDefault: true },
+  { idx: 0, name: "Sunday", show: true },
+  { idx: 1, name: "Monday", show: true },
+  { idx: 2, name: "Tuesday", show: true },
+  { idx: 3, name: "Wednesday", show: true },
+  { idx: 4, name: "Thursday", show: true },
+  { idx: 5, name: "Friday", show: true },
+  { idx: 6, name: "Saturday", show: true },
 ];
 
 const venues = [
   {
-    checked: true,
+    show: true,
     icon: (
       <GroupIcon
         className="cbg-btn-label-icon"
@@ -23,7 +32,7 @@ const venues = [
     label: "In-Person",
   },
   {
-    checked: true,
+    show: true,
     icon: (
       <DevicesIcon
         className="cbg-btn-label-icon"
@@ -34,7 +43,7 @@ const venues = [
     label: "Online",
   },
   {
-    checked: true,
+    show: true,
     icon: (
       <CoPresentIcon
         className="cbg-btn-label-icon"
@@ -47,53 +56,91 @@ const venues = [
 ];
 
 const languages = [
-  { idx: 0, name: "English", selectedDefault: true },
-  { name: "Spanish", selectedDefault: true, idx: 1 },
-  { name: "French", selectedDefault: true, idx: 2 },
-  { name: "Russian", selectedDefault: true, idx: 3 },
-  { name: "Japanese", selectedDefault: true, idx: 4 },
-  { name: "Chinese", selectedDefault: true, idx: 5 },
+  {
+    idx: 0,
+    name: "English",
+    show: true,
+  },
+  {
+    idx: 1,
+    name: "Spanish",
+    show: true,
+  },
+  {
+    idx: 2,
+    name: "French",
+    show: true,
+  },
+  {
+    idx: 3,
+    name: "Russian",
+    show: true,
+  },
+  {
+    idx: 4,
+    name: "Japanese",
+    show: true,
+  },
+  {
+    idx: 5,
+    name: "Chinese",
+    show: true,
+  },
 ];
 
 const affinities = [
   {
+    icon: <PersonAddIcon />,
     idx: 0,
     name: "Beginner Friendly",
-    selectedDefault: true,
+    show: true,
   },
   {
+    icon: <DiningIcon />,
     idx: 1,
     name: "Food",
-    selectedDefault: true,
+    show: true,
   },
   {
+    icon: (<FavoriteIcon />)
     idx: 2,
     name: "Sex/Love",
-    selectedDefault: true,
+    show: true,
   },
   {
+    icon: (<CasinoIcon />),
     idx: 3,
     name: "Gambling",
-    selectedDefault: true,
+    show: true,
   },
   {
+    icon: (<FamilyRestroomIcon />),
     idx: 4,
     name: "Friends & Family",
-    selectedDefault: true,
+    show: true,
   },
   {
+    icon: (<HandshakeIcon />),
     idx: 5,
     name: "Codependency",
-    selectedDefault: true,
+    show: true,
   },
 ];
 
-const MeetingFilterContext = React.createContext({
-  venues: venues.map((v) => Object.assign({ show: true }, v)),
+const MeetingFilterSettings = React.createContext({
+  venues: Object.assign({}, venues),
   searchCoordinates: { latitude: null, longitude: null },
-  days: days.map((d) => Object.assign({ show: true }, d)),
+  days: Object.assign({}, days),
   timeLow: 0,
   timeHigh: 23 * 60 + 59,
-  languages: languages.map((l) => Object.assign({ show: true }, l)),
-  affinities: affinities.map((a) => Object.assign({ show: true }, a)),
+  languages: Object.assign({}, languages),
+  affinities: Object.assign({}, affinities),
 });
+
+exports = {
+  MeetingFilterSettings,
+  venues,
+  days,
+  languages,
+  affinities,
+};
