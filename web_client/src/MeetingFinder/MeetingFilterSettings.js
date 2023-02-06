@@ -145,7 +145,7 @@ export const MeetingFilterSettingsReducer = function (state, action) {
     case "days":
       let day = newState.days.find((d) => d.idx === action.idx);
       if (day) {
-        day.show = !day.show;
+        day.show = action.value;
       } else {
         throw new Error("Invalid day provided to MeetingFilterSettingsReducer");
       }
@@ -153,7 +153,7 @@ export const MeetingFilterSettingsReducer = function (state, action) {
     case "venues":
       let venue = newState.venues.find((v) => v.idx === action.idx);
       if (venue) {
-        venue.show = !venue.show;
+        venue.show = action.value;
       } else {
         throw new Error(
           "Invalid venue provided to MeetingFilterSettingsReducer"
@@ -163,7 +163,7 @@ export const MeetingFilterSettingsReducer = function (state, action) {
     case "languages":
       let language = newState.languages.find((l) => l.idx === action.idx);
       if (language) {
-        language.show = !language.show;
+        language.show = action.value;
       } else {
         throw new Error(
           "Invalid language provided to MeetingFilterSettingsReducer"
@@ -173,7 +173,7 @@ export const MeetingFilterSettingsReducer = function (state, action) {
     case "affinities":
       let affinity = newState.affinities.find((a) => a.idx === action.idx);
       if (affinity) {
-        affinity.show = !affinity.show;
+        affinity.show = action.value;
       } else {
         throw new Error(
           "Invalid affinity provided to MeetingFilterSettingsReducer"

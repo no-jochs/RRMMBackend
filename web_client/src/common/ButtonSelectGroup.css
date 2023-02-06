@@ -1,0 +1,14 @@
+.bsg-btn:hover {
+  background-color: #a58529;
+  color: black;
+}
+
+.bsg-btn-selected {
+  background-color: black;
+  color: white;
+}
+
+.bsg-btn-not-selected {
+  background-color: rgba(0,0,0,0);
+  color: black;
+}

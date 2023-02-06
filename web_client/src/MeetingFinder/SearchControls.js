@@ -4,16 +4,16 @@ import { Dropdown, DropdownButton, Container, Row, Col } from "react-bootstrap";
 import GroupIcon from "@mui/icons-material/Group";
 import DevicesIcon from "@mui/icons-material/Devices";
 import CoPresentIcon from "@mui/icons-material/CoPresent";
+import ButtonSelectGroup from "common/ButtonSelectGroup";
 
 export default function SearchControls({ filterState, filterDispatch }) {
   return (
     <Container className="search-controls">
       <Row className="align-items-center">
         <Col>
-          <CheckboxButtonGroup
-            entity="venues"
+          <ButtonSelectGroup
+            entityName="venues"
             elements={filterState.venues}
-            filterState={filterState}
             filterDispatch={filterDispatch}
           />
         </Col>
