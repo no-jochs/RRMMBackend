@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ButtonGroup } from "@mui/material";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import "./ButtonSelectGroup.css";
 
@@ -7,7 +7,7 @@ function ButtonSelectGroupButton({ element, entityName, filterDispatch }) {
   const [selected, setSelected] = React.useState(element.show);
 
   return (
-    <Button
+    <ToggleButton
       key={element.idx}
       className={`bsg-btn bsg-btn-${
         element.show ? "selected" : "not-selected"
@@ -25,7 +25,7 @@ function ButtonSelectGroupButton({ element, entityName, filterDispatch }) {
       <span className="bsg-btn-text">
         {element.icon} {element.name}
       </span>
-    </Button>
+    </ToggleButton>
   );
 }
 
@@ -47,7 +47,7 @@ export default function ButtonSelectGroup({
 }) {
   console.dir(elements);
   return (
-    <ButtonGroup className="bsl" size="small">
+    <ToggleButtonGroup className="bsl" size="small">
       {elements.map((el) => (
         <StyledButtonSelectGroupButton
           key={el.idx}
@@ -56,6 +56,6 @@ export default function ButtonSelectGroup({
           filterDispatch={filterDispatch}
         />
       ))}
-    </ButtonGroup>
+    </ToggleButtonGroup>
   );
 }

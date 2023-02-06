@@ -8,24 +8,28 @@ import MeetingDetail from './MeetingDetail';
 import DetailLayout from './DetailLayout';
 import LocationDetail from './LocationDetail';
 import NewMeetingForm from './NewMeetingForm';
+import { ThemeProvider } from '@mui/material/styles';
+import { RefugeTheme } from 'common/RefugeTheme';
 import './App.css';
 
 function App() {
   return (
-    <Container className="app-container" fluid>
-      <AppNavbar />
-      <Routes>
-        <Route path="/" element={<MeetingFinderHome />}>
-          <Route index element={<ResultsList />} />
-          <Route path="map" element={<ResultsMap />} />
-        </Route>
-        <Route element={<DetailLayout />}>
-          <Route path="/meetings/:meetingId" element={<MeetingDetail />} />
-          <Route path="/locations/:locationId" element={<LocationDetail />} />
-        </Route>
-        <Route path="/start-a-meeting" element={<NewMeetingForm />} />
-      </Routes>
-    </Container >
+    <ThemeProvider theme={RefugeTheme}>
+      <Container className="app-container" fluid>
+        <AppNavbar />
+        <Routes>
+          <Route path="/" element={<MeetingFinderHome />}>
+            <Route index element={<ResultsList />} />
+            <Route path="map" element={<ResultsMap />} />
+          </Route>
+          <Route element={<DetailLayout />}>
+            <Route path="/meetings/:meetingId" element={<MeetingDetail />} />
+            <Route path="/locations/:locationId" element={<LocationDetail />} />
+          </Route>
+          <Route path="/start-a-meeting" element={<NewMeetingForm />} />
+        </Routes>
+      </Container >
+    </ThemeProvider>
   );
 }
 

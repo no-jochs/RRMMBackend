@@ -5,28 +5,25 @@ import GroupIcon from "@mui/icons-material/Group";
 import DevicesIcon from "@mui/icons-material/Devices";
 import CoPresentIcon from "@mui/icons-material/CoPresent";
 import ButtonSelectGroup from "common/ButtonSelectGroup";
+import MultipleSelectWithChips from "common/MultipleSelectWithChips";
+import MultipleSelectDropdown from "common/MultipleSelectDropdown";
 
 export default function SearchControls({ filterState, filterDispatch }) {
   return (
     <Container className="search-controls">
       <Row className="align-items-center">
-        <Col>
-          <ButtonSelectGroup
-            entityName="venues"
+        <Col xs={2}>
+          <MultipleSelectWithChips
+            labelName="Venue"
             elements={filterState.venues}
-            filterDispatch={filterDispatch}
           />
         </Col>
-        <Col>
-          <DropdownButton>
-            <Dropdown.Item>Sunday</Dropdown.Item>
-            <Dropdown.Item>Monday</Dropdown.Item>
-            <Dropdown.Item>Tuesday</Dropdown.Item>
-            <Dropdown.Item>Wednesday</Dropdown.Item>
-            <Dropdown.Item>Thursday</Dropdown.Item>
-            <Dropdown.Item>Friday</Dropdown.Item>
-            <Dropdown.Item>Saturday</Dropdown.Item>
-          </DropdownButton>
+        <Col xs={2}>
+          <MultipleSelectDropdown
+            entityName="days"
+            elements={filterState.days}
+            filterDispatch={filterDispatch}
+          />
         </Col>
       </Row>
     </Container>

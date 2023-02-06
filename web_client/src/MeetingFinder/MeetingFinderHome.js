@@ -1,4 +1,5 @@
 import React, { useReducer, useCallback } from "react";
+import { Outlet } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import "./MeetingFinderHome.css";
 import SearchControls from "./SearchControls";
@@ -19,6 +20,7 @@ export default function MeetingFinderHome() {
         filterState={filterState}
         filterDispatch={filterDispatch}
       />
+      <Outlet />
     </Container>
   );
 }

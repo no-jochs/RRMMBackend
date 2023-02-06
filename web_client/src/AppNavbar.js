@@ -13,8 +13,8 @@ export default function AppNavbar() {
             alt="Refuge Recovery Logo"
           />
         </Navbar.Brand>
-        <Navbar.Text className="nav-logo-text">
-          Refuge Recovery Meetings
+        <Navbar.Text>
+          <h1 className="nav-logo-text">Refuge Recovery Meetings</h1>
         </Navbar.Text>
       </Container>
     </Navbar>
