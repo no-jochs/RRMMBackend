@@ -30,39 +30,21 @@ RSpec.describe User, type: :model do
     it 'cannot be nil' do
       user.password = nil
       user.valid?
-      expect(user.errors[:password].join(' ')).to match(/not be blank/)
+      expect(user.errors[:password].join(' ')).to match(/can't be blank/)
     end
 
     it 'must contain more than 11 characters' do
       user.password = 'aAbBdd8]t50'
       user.valid?
-      expect(user.errors[:password].join(' ')).to match(/at least 12 characters/)
-    end
-
-    it 'must contain at least one uppercase letter' do
-      user.password = 'a' * 12
-      user.valid?
-      expect(user.errors[:password].join(' ')).to match(/at least 1 uppercase/)
-    end
-
-    it 'must contain at least one lowercase letter' do
-      user.password = 'A' * 12
-      user.valid?
-      expect(user.errors[:password].join(' ')).to match(/at least 1 lowercase/)
-    end
-
-    it 'must contain at least one digit' do
-      user.password = 'aBcDefghiJkL'
-      user.valid?
-      expect(user.errors[:password].join(' ')).to match(/at least 1 digit/)
+      expect(user.errors[:password].join(' ')).to match(/is too short/)
     end
   end
 
-  describe 'password_digest' do
+  describe 'encrypted_password' do
     it 'does not store the password' do
       user.password = 'aBcd1234$%uiabD0'
       user.save
-      expect(user.password_digest).not_to eq(user.password)
+      expect(user.encrypted_password).not_to eq(user.password)
     end
   end
 end

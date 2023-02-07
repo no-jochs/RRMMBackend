@@ -59,11 +59,11 @@ RSpec.describe Location, type: :model do
 
     it 'is valid with upper or lowercase ISO 3166 Alpha 2 Code' do
       location.country = 'us'
-      expect(location.country.alpha2).to eq('US')
+      expect(location.iso3166_country.alpha2).to eq('US')
     end
 
     it 'is an instance of ISO3166::Country' do
-      expect(location.country).to be_instance_of(ISO3166::Country)
+      expect(location.iso3166_country).to be_instance_of(ISO3166::Country)
     end
   end
 
@@ -79,12 +79,14 @@ RSpec.describe Location, type: :model do
   end
 
   describe 'timezone=' do
-    it 'raises ArgumentError if not valid timezone string' do
-      expect { location.timezone = 'foo' }.to raise_error(ArgumentError)
-    end
-
-    it 'accepts valid argument' do
-      expect { location.timezone = 'Central Time (US & Canada)' }.not_to raise_error
+    it 'updates the value of timezone_identifier' do
+      new_timezone = nil
+      while new_timezone.nil?
+        z = ActiveSupport::TimeZone.all.sample.tzinfo.name
+        new_timezone = location.timezone == z ? nil : z
+      end
+      location.timezone = new_timezone
+      expect(location.timezone_identifier).to eq(new_timezone)
     end
   end
 
@@ -92,6 +94,16 @@ RSpec.describe Location, type: :model do
     it 'returns an ActiveSupport::TimeZone object if set' do
       location.timezone = 'Central Time (US & Canada)'
       expect(location.timezone).to be_instance_of(ActiveSupport::TimeZone)
+    end
+
+    it 'is valid when it conforms to TZ database format' do
+      location.timezone = 'Eastern Time (US & Canada)'
+      expect(location).to be_valid
+    end
+
+    it 'is invalid when it does not conform to TZ database format' do
+      location.timezone = 'Cal-Zone'
+      expect(location).to_not be_valid
     end
   end
 end
