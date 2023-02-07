@@ -9,7 +9,7 @@ FactoryBot.define do
     notes { Faker::Lorem.sentences.join(' ') }
     conference_link { 'https://zoom.link.com' }
     group_resources { {} }
-    url_slug { Faker::Internet.slug }
+    slug { Faker::Internet.slug }
     language { Meeting.languages.keys.sample.to_sym }
     status { :approved }
     location

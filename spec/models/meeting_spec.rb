@@ -36,30 +36,30 @@ RSpec.describe Meeting, type: :model do
     end
   end
 
-  describe 'url_slug' do
+  describe 'slug' do
     it 'is invalid unless url-safe' do
-      meeting.url_slug = 'something("unsafe\\'
+      meeting.slug = 'something("unsafe\\'
       expect(meeting).to_not be_valid
     end
 
     it 'may contain hyphens' do
-      meeting.url_slug = 'something-with-hyphens'
+      meeting.slug = 'something-with-hyphens'
       expect(meeting).to be_valid
     end
 
     it 'may contain underscores' do
-      meeting.url_slug = 'something_with_underscores'
+      meeting.slug = 'something_with_underscores'
       expect(meeting).to be_valid
     end
 
     it 'may contain numbers' do
-      meeting.url_slug = 'something-with-numbers-321'
+      meeting.slug = 'something-with-numbers-321'
       expect(meeting).to be_valid
     end
 
     it 'must be unique' do
       existing_meeting = create(:meeting)
-      meeting.url_slug = existing_meeting.url_slug
+      meeting.slug = existing_meeting.slug
       expect(meeting).to_not be_valid
     end
   end

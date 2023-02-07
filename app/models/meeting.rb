@@ -9,7 +9,7 @@ class Meeting < ApplicationRecord
   validates :start_time_minute, presence: true,
                                 numericality: { greater_than_or_equal_to: 0, less_than: 60, only_integer: true }
   validates :duration, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }
-  validates :url_slug, presence: true, uniqueness: true
+  validates :slug, presence: true, uniqueness: true
   validates_with SlugValidator
 
   enum :day, Date::DAYNAMES.map(&:downcase).map(&:to_sym)
