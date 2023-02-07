@@ -1,0 +1,14 @@
+#app-footer {
+  position: fixed;
+  height: 2.5vh;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(42, 35, 16);
+}
+
+.copywrite-text {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: small;
+  color: white;
+}

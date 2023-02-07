@@ -11,6 +11,7 @@ import NewMeetingForm from './NewMeetingForm';
 import { ThemeProvider } from '@mui/material/styles';
 import { RefugeTheme } from 'common/RefugeTheme';
 import './App.css';
+import AppFooter from 'AppFooter';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           </Route>
           <Route path="/start-a-meeting" element={<NewMeetingForm />} />
         </Routes>
+        <AppFooter />
       </Container >
     </ThemeProvider>
   );

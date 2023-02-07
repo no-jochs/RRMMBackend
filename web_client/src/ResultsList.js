@@ -89,7 +89,11 @@ function fixedHeaderContent() {
           key={column.dataKey}
           variant="head"
           align={column.numeric || false ? "right" : "left"}
-          style={{ width: column.width }}
+          style={{
+            width: column.width,
+            backgroundColor: "black",
+            color: "white",
+          }}
           sx={{
             backgroundColor: "background.paper",
           }}
@@ -103,7 +107,7 @@ function fixedHeaderContent() {
 
 function rowContent(_index, row) {
   return (
-    <React.Fragment>
+    <>
       {columns.map((column) => (
         <TableCell
           key={column.dataKey}
@@ -112,7 +116,7 @@ function rowContent(_index, row) {
           {row[column.dataKey]}
         </TableCell>
       ))}
-    </React.Fragment>
+    </>
   );
 }
 
@@ -125,6 +129,7 @@ export default function ResultsList() {
           components={VirtuosoTableComponents}
           fixedHeaderContent={fixedHeaderContent}
           itemContent={rowContent}
+          className="results-list-table"
         />
       </Paper>
     </Container>

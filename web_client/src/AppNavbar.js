@@ -4,7 +4,7 @@ import "./AppNavbar.css";
 
 export default function AppNavbar() {
   return (
-    <Navbar expand="xl" className="app-navbar">
+    <Navbar expand="xl" className="app-navbar app-dynamic-content-start">
       <Container className="navbar-container justify-content-start">
         <Navbar.Brand href="/">
           <img
