@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_06_221733) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_08_055706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_06_221733) do
 
   create_table "meetings", force: :cascade do |t|
     t.string "name", null: false
-    t.date "start_date", default: -> { "CURRENT_DATE" }, null: false
+    t.datetime "start_date", precision: nil, null: false
     t.integer "duration", default: 60, null: false
     t.text "notes"
     t.string "conference_link"
@@ -60,11 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_06_221733) do
     t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "day", default: 0, null: false
     t.boolean "visible", default: true
     t.integer "status", default: 0, null: false
-    t.integer "start_time_hour", default: 12, null: false
-    t.integer "start_time_minute", default: 0, null: false
     t.index ["slug"], name: "index_meetings_on_slug", unique: true
   end
 

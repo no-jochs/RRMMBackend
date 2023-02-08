@@ -65,40 +65,8 @@ RSpec.describe Meeting, type: :model do
   end
 
   describe 'start_date' do
-    it 'is invalid if in the past' do
-      meeting.start_date = 1.day.ago
-      expect(meeting).to_not be_valid
-    end
-
-    it 'is valid if it is today' do
-      meeting.start_date = Time.zone.today
-      expect(meeting).to be_valid
-    end
-
-    it 'is valid if it is in the future' do
-      meeting.start_date = Time.zone.today + 1.day
-      expect(meeting).to be_valid
-    end
-  end
-
-  describe 'start_time_hour' do
-    it 'is only valid if in range of 0..23' do
-      meeting.start_time_hour = 0
-      expect(meeting).to be_valid
-      meeting.start_time_hour = -1
-      expect(meeting).to_not be_valid
-      meeting.start_time_hour = 24
-      expect(meeting).to_not be_valid
-    end
-  end
-
-  describe 'start_time_minute' do
-    it 'is only valid if in range of 0..59' do
-      meeting.start_time_minute = 0
-      expect(meeting).to be_valid
-      meeting.start_time_minute = -1
-      expect(meeting).to_not be_valid
-      meeting.start_time_minute = 60
+    it 'must be present' do
+      meeting.start_date = nil
       expect(meeting).to_not be_valid
     end
   end
@@ -125,24 +93,6 @@ RSpec.describe Meeting, type: :model do
     it 'accepts strings or symbols' do
       expect { meeting.status = 'approved' }.to_not raise_error
       expect { meeting.status = :approved }.to_not raise_error
-    end
-  end
-
-  describe 'day=' do
-    Meeting.days.each_key do |day|
-      it "is vaild with argument #{day}" do
-        meeting.day = day
-        expect(meeting).to be_valid
-      end
-    end
-
-    it "raises error with argument other than #{Meeting.days.keys.join(', ')}." do
-      expect { meeting.day = 'not-a-day' }.to raise_error(ArgumentError)
-    end
-
-    it 'accepts strings or symbols' do
-      expect { meeting.day = 'monday' }.to_not raise_error
-      expect { meeting.day = :monday }.to_not raise_error
     end
   end
 

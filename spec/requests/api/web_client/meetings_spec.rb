@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::WebClient::Meetings', type: :request do
+  before(:all) { 10.times { create(:meeting) } }
+
   describe 'GET /api/web_client/meetings' do
     before(:each) { get '/api/web_client/meetings' }
 
@@ -18,8 +20,8 @@ RSpec.describe 'Api::WebClient::Meetings', type: :request do
 
     it 'returns meetings with associated locations' do
       meetings = JSON.parse(response.body)
-      expect(meetings.all? { |m| m.key?(:location) }).to be(true)
-      expect(meetings.pluck(:location)).to all(be_a(Hash))
+      expect(meetings.all? { |m| m.key?('location') }).to be(true)
+      expect(meetings.pluck('location')).to all(be_a(Hash))
     end
   end
 end
