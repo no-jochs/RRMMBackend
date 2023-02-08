@@ -17,13 +17,12 @@ ActiveAdmin.register Meeting.includes(:location) do
     column 'Time Zone' do |m|
       m.location.timezone_name
     end
-    column 'Start Time' do |meeting|
-      t = Time.new(2000, 1, 1, meeting.start_time_hour, meeting.start_time_minute)
-      t.to_fs(:time)
+    column 'Start Time' do |m|
+      m.start_date.strftime('%H:%M')
     end
     column :duration
     column 'Day' do |m|
-      m.day.titleize
+      m.start_date.strftime('%A')
     end
     column 'Language' do |m|
       m.language.titleize
@@ -38,11 +37,7 @@ ActiveAdmin.register Meeting.includes(:location) do
       input :slug
       input :location_id, as: :search_select, url: admin_locations_path, fields: %i[name country city],
                           display_name: 'name', minimum_input_length: 0
-      input :start_date, as: :date_time_picker,
-                         picker_options: { format: 'm/d/Y', min_date: Date.current, timepicker: false }
-      input :day
-      input 'Start Time', label: 'Start Hour (24hr)'
-      input :start_time_minute, label: 'Start Minute'
+      input :start_date, as: :date_time_picker
       input :duration, as: :number
       input :notes
       input :conference_link, as: :url

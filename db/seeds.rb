@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 if Rails.env.development? || ENV['PIPELINE_STAGE'] == 'staging'
-  User.create(email: 'admin@example.com', password: 'password', password_confirmation: 'password',
+  User.create(email: 'admin@example.com', password: 'passwordpassword', password_confirmation: 'passwordpassword',
               name: 'Some Admin')
   FactoryBot.create_list(:meeting, 50)
 end
