@@ -8,66 +8,47 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { TableVirtuoso } from "react-virtuoso";
 import { Container } from "react-bootstrap";
+import Meeting from "lib/meeting";
 import "./ResultsList.css";
-
-const sample = [
-  ["Frozen yoghurt", "159", "6.0", "24", "4.0"],
-  ["Ice cream sandwich", "237", "9.0", "37", "4.3"],
-  ["Eclair", "262", "16.0", "24", "6.0"],
-  ["Cupcake", "305", "3.7", "67", "4.3"],
-  ["Gingerbread", "356", "16.0", "49", "3.9"],
-];
-
-function createData(
-  id,
-  meetingtime,
-  meetingname,
-  meetinglocation,
-  meetingaddress,
-  meetingtype
-) {
-  return {
-    id,
-    meetingtime,
-    meetingname,
-    meetinglocation,
-    meetingaddress,
-    meetingtype,
-  };
-}
 
 const columns = [
   {
+    width: 100,
+    label: "Type",
+    dataKey: "type",
+  },
+  {
+    width: 60,
+    label: "Day",
+    dataKey: "day",
+  },
+  {
     width: 60,
     label: "Time",
-    dataKey: "meetingtime",
+    dataKey: "time",
+    numeric: true,
   },
   {
     width: 100,
     label: "Name",
-    dataKey: "meetingname",
+    dataKey: "name",
   },
   {
     width: 100,
     label: "Location",
-    dataKey: "meetinglocation",
+    dataKey: "location",
+  },
+  {
+    width: 120,
+    label: "Region",
+    dataKey: "region",
   },
   {
     width: 180,
-    label: "Address",
-    dataKey: "meetingaddress",
-  },
-  {
-    width: 100,
-    label: "Type",
-    dataKey: "meetingtype",
+    label: "Affinity",
+    dataKey: "affinities",
   },
 ];
-
-const rows = Array.from({ length: 200 }, (_, index) => {
-  const randomSelection = sample[Math.floor(Math.random() * sample.length)];
-  return createData(index, ...randomSelection);
-});
 
 const VirtuosoTableComponents = {
   Scroller: React.forwardRef((props, ref) => (
@@ -120,12 +101,27 @@ function rowContent(_index, row) {
   );
 }
 
-export default function ResultsList() {
+export default function ResultsList({ meetings }) {
+  const parseData = (meetings) => {
+    return meetings.map((m, idx) => {
+      let mc = new Meeting(m);
+      return {
+        id: mc.id(),
+        venue: mc.venue(),
+        day: mc.dayName(),
+        time: mc.nextDate().toString(),
+        name: mc.name(),
+        location: mc.location().name,
+        region: mc.region(),
+        affinities: mc.affinities().toString(),
+      };
+    });
+  };
   return (
     <Container className="results-list-container">
       <Paper style={{ height: "100%", width: "100%" }}>
         <TableVirtuoso
-          data={rows}
+          data={parseData(meetings)}
           components={VirtuosoTableComponents}
           fixedHeaderContent={fixedHeaderContent}
           itemContent={rowContent}

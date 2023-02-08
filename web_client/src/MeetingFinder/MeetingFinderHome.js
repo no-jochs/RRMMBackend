@@ -15,6 +15,9 @@ export default function MeetingFinderHome() {
   );
 
   const [height, setHeight] = useState(0);
+  const [meetings, setMeetings] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const [hasFetched, setHasFetched] = useState(false);
 
   useEffect(() => {
     const dcsData = document
@@ -26,6 +29,18 @@ export default function MeetingFinderHome() {
     setHeight(window.innerHeight - dceData.height - dcsData.height);
   }, []);
 
+  useEffect(() => {
+    if (hasFetched) {
+      return;
+    }
+    setHasFetched(true);
+    fetch("/api/web_client/meetings")
+      .then((res) => res.json())
+      .then((data) => {
+        setMeetings(data);
+      });
+  });
+
   return (
     <Container
       className="search-container"
@@ -35,7 +50,7 @@ export default function MeetingFinderHome() {
         filterState={filterState}
         filterDispatch={filterDispatch}
       />
-      <Outlet />
+      <Outlet meetings={meetings} />
     </Container>
   );
 }

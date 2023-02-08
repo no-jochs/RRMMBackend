@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import AppNavbar from './AppNavbar';
@@ -14,14 +15,28 @@ import './App.css';
 import AppFooter from 'AppFooter';
 
 function App() {
+  const [meetings, setMeetings] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const [hasFetched, setHasFetched] = useState(false);
+  useEffect(() => {
+    if (hasFetched) {
+      return;
+    }
+    setHasFetched(true);
+    fetch("/api/web_client/meetings")
+      .then((res) => res.json())
+      .then((data) => {
+        setMeetings(data);
+      });
+  });
   return (
     <ThemeProvider theme={RefugeTheme}>
       <Container className="app-container" fluid>
         <AppNavbar />
         <Routes>
           <Route path="/" element={<MeetingFinderHome />}>
-            <Route index element={<ResultsList />} />
-            <Route path="map" element={<ResultsMap />} />
+            <Route index element={<ResultsList meetings={meetings} />} />
+            <Route path="map" element={<ResultsMap meetings={meetings} />} />
           </Route>
           <Route element={<DetailLayout />}>
             <Route path="/meetings/:meetingId" element={<MeetingDetail />} />
