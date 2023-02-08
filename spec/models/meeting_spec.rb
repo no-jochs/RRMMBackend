@@ -71,6 +71,22 @@ RSpec.describe Meeting, type: :model do
     end
   end
 
+  describe 'next_meeting' do
+    it 'is in the future' do
+      expect(meeting.start_date).to be_past
+      expect(meeting.next_meeting).to be_future
+    end
+
+    it 'is the same weekday as start_date' do
+      expect(meeting.next_meeting.wday).to eq(meeting.start_date.wday)
+    end
+
+    it 'is always less than 7 days from now' do
+      meeting.start_date = Time.current
+      expect(meeting.next_meeting).to be_before(Time.current.in(7.days))
+    end
+  end
+
   describe 'duration' do
     it 'must be positive' do
       meeting.duration = -2
