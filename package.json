@@ -1,0 +1,8 @@
+{
+  "name": "RRMMBackend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/no-jochs/RRMMBackend.git",
+  "author": "John Ochs <code@johnochs.io>",
+  "license": "MIT"
+}
