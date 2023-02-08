@@ -38,3 +38,5 @@ vendor/bundle
 !/public/404.html
 !/public/422.html
 !/public/500.html
+
+/node_modules
