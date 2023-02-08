@@ -34,10 +34,14 @@ Dir["#{WEB_CLIENT_BUILD_PATH}/*"].each do |build_entry|
 
   if File.file?(build_entry) && build_entry_basename == "index.html"
     puts "Copying: #{build_entry} -> #{File.join(RAILS_MEETING_FINDER_INDEX_PATH, build_entry_basename)}"
-    FileUtils.copy_file(build_entry, File.join(RAILS_MEETING_FINDER_INDEX_PATH, build_entry_basename), remove_destination: true)
-  elsif 
-    puts "Copying: #{build_entry} -> #{File.join(RAILS_CLIENT_BUILD_PUBLIC_ASSETS_PATH, build_entry_basename)}"
-    FileUtils.copy_entry(build_entry, File.join(RAILS_CLIENT_BUILD_PUBLIC_ASSETS_PATH, build_entry_basename),remove_destination: true)
+    FileUtils.copy_file(build_entry, File.join(RAILS_MEETING_FINDER_INDEX_PATH, build_entry_basename))
+  elsif
+    entry_destination = File.join(RAILS_CLIENT_BUILD_PUBLIC_ASSETS_PATH, build_entry_basename)
+    if File.directory?(build_entry)
+      FileUtils.rm_rf(entry_destination, verbose: true)
+    end
+    puts "Copying: #{build_entry} -> #{}"
+    FileUtils.copy_entry(build_entry, entry_destination)
   end
 end
 
