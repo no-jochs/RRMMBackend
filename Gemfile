@@ -57,10 +57,12 @@ gem "activeadmin", "~> 2.13", ">= 2.13.1"
 gem "activeadmin_addons", "~> 1.9"
 gem "devise", "~> 4.8", ">= 4.8.1"
 
+# TODO: Move factory_bot & faker back into :development, :test group
+gem "factory_bot_rails", "~> 6.2"
+gem "faker", "~> 3.1"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "factory_bot_rails", "~> 6.2"
-  gem "faker", "~> 3.1"
   gem "pry-coolline", "~> 0.2.6"
   gem "pry-nav", "~> 1.0"
   gem "pry-rails", "~> 0.3.9"
