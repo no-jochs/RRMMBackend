@@ -1,6 +1,6 @@
 ActiveAdmin.register Location.includes(:meetings) do
   permit_params :name, :notes, :latitude, :longitude, :street_address_1, :street_address_2, :city, :country, :state_providence,
-                :postal_code, :slug, :venue_type, :timezone_identifier, :status
+                :postal_code, :slug, :venue_type, :time_zone, :status
 
   index do
     selectable_column
@@ -20,7 +20,28 @@ ActiveAdmin.register Location.includes(:meetings) do
     column :city
     column :postal_code
     column 'Timezone' do |l|
-      l.timezone_name
+      l.time_zone
+    end
+  end
+
+  form do |_f|
+    inputs do
+      semantic_errors
+      input :name
+      input :slug
+      input :country
+      input :state_providence
+      input :city
+      input :street_address_1
+      input :street_address_2
+      input :postal_code
+      input :latitude
+      input :longitude
+      input :time_zone
+      input :venue_type
+      input :status
+      input :notes
+      actions
     end
   end
 end

@@ -78,32 +78,32 @@ RSpec.describe Location, type: :model do
     end
   end
 
-  describe 'timezone=' do
-    it 'updates the value of timezone_identifier' do
-      new_timezone = nil
-      while new_timezone.nil?
-        z = ActiveSupport::TimeZone.all.sample.tzinfo.name
-        new_timezone = location.timezone == z ? nil : z
-      end
-      location.timezone = new_timezone
-      expect(location.timezone_identifier).to eq(new_timezone)
-    end
-  end
-
-  describe 'timezone' do
-    it 'returns an ActiveSupport::TimeZone object if set' do
-      location.timezone = 'Central Time (US & Canada)'
-      expect(location.timezone).to be_instance_of(ActiveSupport::TimeZone)
+  describe 'time_zone' do
+    it 'cannot be empty' do
+      location.time_zone = nil
+      expect(location).to_not be_valid
     end
 
     it 'is valid when it conforms to TZ database format' do
-      location.timezone = 'Eastern Time (US & Canada)'
+      location.time_zone = 'America/New_York'
       expect(location).to be_valid
     end
 
     it 'is invalid when it does not conform to TZ database format' do
-      location.timezone = 'Cal-Zone'
+      location.time_zone = 'Cal-Zone'
       expect(location).to_not be_valid
+    end
+  end
+
+  describe 'as_time_zone' do
+    it 'is nil if time_zone is nil' do
+      location.time_zone = nil
+      expect(location.as_time_zone).to be_nil
+    end
+
+    it 'returns an instance of ActiveSupport::TimeZone if time_zone is set' do
+      location.time_zone = 'America/New_York'
+      expect(location.as_time_zone).to be_instance_of(ActiveSupport::TimeZone)
     end
   end
 end
