@@ -1,6 +1,6 @@
 ActiveAdmin.register Meeting.includes(:location) do
   permit_params :name, :start_date, :duration, :notes, :conference_link, :group_resources, :location_id, :language,
-                :slug, :day, :visible, :status, :start_time_hour, :start_time_minute
+                :slug, :day, :visible, :status
   index do
     selectable_column
     column :id
@@ -15,7 +15,7 @@ ActiveAdmin.register Meeting.includes(:location) do
       m.location.country_common_name
     end
     column 'Time Zone' do |m|
-      m.location.timezone_name
+      m.location.time_zone
     end
     column 'Start Time' do |m|
       m.start_date.strftime('%H:%M')
