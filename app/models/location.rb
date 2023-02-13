@@ -40,6 +40,31 @@ class Location < ApplicationRecord
     ActiveSupport::TimeZone[time_zone]
   end
 
+  def street_address
+    return nil if street_address_1.blank?
+
+    street_address_1 + (street_address_2.blank? ? '' : "\n") + street_address_2
+  end
+
+  def formatted_address
+    if iso3166_country && iso3166_country.address_format.present?
+      @template ||= Liquid::Template.parse(iso3166_country.address_format.sub("{{recipient}}\n", ''))
+      @template.render({
+                         'street' => street_address,
+                         'city' => city,
+                         'region_short' => iso3166_country.subdivisions[state_providence]&.code || '',
+                         'postalcode' => postal_code,
+                         'country' => iso3166_country.common_name
+                       })
+    else
+      result = ''
+      result += "#{street_address_1}\n"
+      result += street_address_2.blank? ? '' : "#{street_address_2}\n"
+      result += "#{city}, #{state_providence} #{postal_code}\n"
+      result + country_common_name
+    end
+  end
+
   private
 
   def country_is_valid_aplha2_code

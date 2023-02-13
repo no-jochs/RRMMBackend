@@ -50,6 +50,7 @@ gem "bcrypt", "~> 3.1", ">= 3.1.18"
 
 gem "countries", "~> 5.3"
 gem "country_select", "~> 8.0", ">= 8.0.1"
+gem "liquid", "~> 5.4"
 
 gem "tzinfo", "~> 2.0", ">= 2.0.5"
 

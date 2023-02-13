@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,45 +9,52 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { TableVirtuoso } from "react-virtuoso";
 import { Container } from "react-bootstrap";
-import Meeting from "lib/meeting";
 import "./ResultsList.css";
 
 const columns = [
   {
     width: 100,
-    label: "Type",
-    dataKey: "type",
+    label: "Format",
+    dataKey: "format",
+    align: "center"
   },
   {
-    width: 60,
+    width: 100,
     label: "Day",
     dataKey: "day",
-  },
-  {
-    width: 60,
-    label: "Time",
-    dataKey: "time",
+    align: "center",
     numeric: true,
   },
   {
     width: 100,
-    label: "Name",
-    dataKey: "name",
+    label: "Time",
+    dataKey: "time",
+    align: "center",
+    numeric: true,
   },
   {
-    width: 100,
-    label: "Location",
-    dataKey: "location",
+    width: 160,
+    label: "Meeting",
+    dataKey: "meeting",
+    align: "left"
   },
   {
-    width: 120,
-    label: "Region",
-    dataKey: "region",
+    width: 200,
+    label: "Venue",
+    dataKey: "venue",
+    align: "left"
+  },
+  {
+    width: 200,
+    label: "Address",
+    dataKey: "address",
+    align: "left"
   },
   {
     width: 180,
     label: "Affinity",
     dataKey: "affinities",
+    align: "left"
   },
 ];
 
@@ -69,15 +77,14 @@ function fixedHeaderContent() {
         <TableCell
           key={column.dataKey}
           variant="head"
-          align={column.numeric || false ? "right" : "left"}
           style={{
-            width: column.width,
             backgroundColor: "black",
             color: "white",
           }}
           sx={{
             backgroundColor: "background.paper",
           }}
+          align={column.align}
         >
           {column.label}
         </TableCell>
@@ -86,42 +93,38 @@ function fixedHeaderContent() {
   );
 }
 
-function rowContent(_index, row) {
+function rowContent(_index, m) {
   return (
     <>
-      {columns.map((column) => (
-        <TableCell
-          key={column.dataKey}
-          align={column.numeric || false ? "right" : "left"}
-        >
-          {row[column.dataKey]}
-        </TableCell>
-      ))}
+      <TableCell align="center">
+        {m.formatIcon()} {m.format()}
+      </TableCell>
+      <TableCell align="center">
+        {m.formattedNextDayName()}
+      </TableCell>
+      <TableCell align="center">
+        {m.formattedNextTime()}
+      </TableCell>
+      <TableCell align="left">
+        <Link to={`meetings/${m.slug()}`}>{m.name()}</Link>
+      </TableCell>
+      <TableCell align="left">
+        <Link to={`locations/${m.locationSlug()}`}>{m.locationName()}</Link>
+      </TableCell>
+      <TableCell className="multi-line-format" align="left">{m.formattedAddress()}</TableCell>
+      <TableCell align="left">
+        {m.affinities().toString()}
+      </TableCell>
     </>
   );
 }
 
 export default function ResultsList({ meetings }) {
-  const parseData = (meetings) => {
-    return meetings.map((m, idx) => {
-      let mc = new Meeting(m);
-      return {
-        id: mc.id(),
-        venue: mc.venue(),
-        day: mc.dayName(),
-        time: mc.nextDate().toString(),
-        name: mc.name(),
-        location: mc.location().name,
-        region: mc.region(),
-        affinities: mc.affinities().toString(),
-      };
-    });
-  };
   return (
     <Container className="results-list-container">
       <Paper style={{ height: "100%", width: "100%" }}>
         <TableVirtuoso
-          data={parseData(meetings)}
+          data={meetings}
           components={VirtuosoTableComponents}
           fixedHeaderContent={fixedHeaderContent}
           itemContent={rowContent}

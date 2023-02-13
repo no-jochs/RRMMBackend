@@ -12,3 +12,7 @@
 .results-list-table::-webkit-scrollbar {
   display: none;
 }
+
+.multi-line-format {
+  white-space: pre-wrap;
+}

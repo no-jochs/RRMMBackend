@@ -13,11 +13,12 @@ import { ThemeProvider } from '@mui/material/styles';
 import { RefugeTheme } from 'common/RefugeTheme';
 import './App.css';
 import AppFooter from 'AppFooter';
+import Meeting from 'lib/meeting';
 
 function App() {
   const [meetings, setMeetings] = useState([]);
-  const [locations, setLocations] = useState([]);
   const [hasFetched, setHasFetched] = useState(false);
+
   useEffect(() => {
     if (hasFetched) {
       return;
@@ -26,9 +27,13 @@ function App() {
     fetch("/api/web_client/meetings")
       .then((res) => res.json())
       .then((data) => {
-        setMeetings(data);
+        const meetings = data.map((m) => {
+          return new Meeting(m);
+        }).sort((a, b) => { return a.time() < b.time() ? -1 : 1; });
+        setMeetings(meetings);
       });
   });
+
   return (
     <ThemeProvider theme={RefugeTheme}>
       <Container className="app-container" fluid>
