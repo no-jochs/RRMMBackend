@@ -68,6 +68,7 @@ group :development, :test do
   gem "pry-nav", "~> 1.0"
   gem "pry-rails", "~> 0.3.9"
   gem "rspec-rails", "~> 6.0", ">= 6.0.1"
+  gem "dotenv-rails", "~> 2.8", ">= 2.8.1"
 end
 
 group :development do

@@ -27,9 +27,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-.DS_Store
-node_modules
-vendor/bundle
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
@@ -39,4 +36,8 @@ vendor/bundle
 !/public/422.html
 !/public/500.html
 
-/node_modules
+# Other files & directories
+.DS_Store
+node_modules
+vendor/bundle
+.env
