@@ -5,6 +5,9 @@ ActiveAdmin.register Location.includes(:meetings) do
   index do
     selectable_column
     column :id
+    column 'Location Type' do |l|
+      l.location_type.underscore.sub('_', ' ').titleize
+    end
     column 'Name' do |l|
       link_to l.name, admin_location_path(l)
     end

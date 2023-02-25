@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_11_013743) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_24_222829) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,18 +33,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_013743) do
     t.text "notes"
     t.decimal "latitude", precision: 15, scale: 12
     t.decimal "longitude", precision: 15, scale: 12
-    t.string "country", null: false
+    t.string "country"
     t.string "state_providence"
     t.string "postal_code"
     t.string "slug", null: false
-    t.integer "venue_type", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "time_zone", null: false
+    t.string "time_zone"
     t.integer "status", default: 0, null: false
     t.string "street_address_1"
     t.string "street_address_2"
     t.string "city"
+    t.string "location_type", null: false
+    t.index ["name"], name: "index_locations_on_name", unique: true
     t.index ["slug"], name: "index_locations_on_slug", unique: true
   end
 
@@ -62,6 +63,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_013743) do
     t.datetime "updated_at", null: false
     t.boolean "visible", default: true
     t.integer "status", default: 0, null: false
+    t.integer "format", default: 0, null: false
+    t.string "time_zone"
+    t.index ["location_id"], name: "index_meetings_on_location_id"
+    t.index ["name"], name: "index_meetings_on_name", unique: true
     t.index ["slug"], name: "index_meetings_on_slug", unique: true
   end
 
