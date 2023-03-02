@@ -1,6 +1,6 @@
 require_relative '../../lib/classes/slug_validator'
 class Meeting < ApplicationRecord
-  belongs_to :location
+  belongs_to :venue
 
   validates :name, presence: true, length: { minimum: 3, maximum: 255 }
   validates :duration, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_11_013743) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_25_061402) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,26 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_013743) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "notes"
-    t.decimal "latitude", precision: 15, scale: 12
-    t.decimal "longitude", precision: 15, scale: 12
-    t.string "country", null: false
-    t.string "state_providence"
-    t.string "postal_code"
-    t.string "slug", null: false
-    t.integer "venue_type", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "time_zone", null: false
-    t.integer "status", default: 0, null: false
-    t.string "street_address_1"
-    t.string "street_address_2"
-    t.string "city"
-    t.index ["slug"], name: "index_locations_on_slug", unique: true
-  end
-
   create_table "meetings", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "start_date", precision: nil, null: false
@@ -55,13 +35,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_013743) do
     t.text "notes"
     t.string "conference_link"
     t.json "group_resources", default: {}, null: false
-    t.integer "location_id", null: false
+    t.integer "venue_id", null: false
     t.integer "language", default: 0, null: false
     t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "visible", default: true
     t.integer "status", default: 0, null: false
+    t.string "time_zone"
+    t.integer "format", default: 0, null: false
+    t.string "type", null: false
     t.index ["slug"], name: "index_meetings_on_slug", unique: true
   end
 
@@ -85,6 +68,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_013743) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "notes"
+    t.decimal "latitude", precision: 15, scale: 12
+    t.decimal "longitude", precision: 15, scale: 12
+    t.string "country"
+    t.string "state_providence"
+    t.string "postal_code"
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "time_zone"
+    t.integer "status", default: 0, null: false
+    t.string "street_address_1"
+    t.string "street_address_2"
+    t.string "city"
+    t.string "type"
+    t.index ["slug"], name: "index_venues_on_slug", unique: true
   end
 
 end

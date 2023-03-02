@@ -1,0 +1,2 @@
+class VirtualMeeting < Meeting
+end

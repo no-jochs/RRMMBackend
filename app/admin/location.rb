@@ -1,4 +1,4 @@
-ActiveAdmin.register Location.includes(:meetings) do
+ActiveAdmin.register Venue.includes(:meetings) do
   permit_params :name, :notes, :latitude, :longitude, :street_address_1, :street_address_2, :city, :country, :state_providence,
                 :postal_code, :slug, :venue_type, :time_zone, :status
 

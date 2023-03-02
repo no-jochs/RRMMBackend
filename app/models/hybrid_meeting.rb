@@ -1,0 +1,2 @@
+class HybridMeeting < Meeting
+end

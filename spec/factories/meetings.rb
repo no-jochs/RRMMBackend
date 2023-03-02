@@ -8,7 +8,7 @@ FactoryBot.define do
     group_resources { {} }
     slug { Faker::Internet.slug }
     language { Meeting.languages.keys.sample.to_sym }
-    status { :approved }
-    location
+    status { %i[approved requires_review requires_changes rejected].sample }
+    venue { build(:physical_venue) }
   end
 end
