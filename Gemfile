@@ -81,7 +81,3 @@ group :test do
   gem "database_cleaner-active_record", "~> 2.0", ">= 2.0.1"
   gem "pundit-matchers", "~> 1.8", ">= 1.8.4"
 end
-
-gem "cssbundling-rails", "~> 1.1"
-
-gem "jsbundling-rails", "~> 1.1"
