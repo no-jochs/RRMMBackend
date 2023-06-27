@@ -1,0 +1,140 @@
+{
+  "result": {
+    "verdict": {
+      "inputGranularity": "PREMISE",
+      "validationGranularity": "PREMISE",
+      "geocodeGranularity": "PREMISE",
+      "hasInferredComponents": true
+    },
+    "address": {
+      "formattedAddress": "135 Beardsley Street, Crystal Lake, IL 60014-4466, USA",
+      "postalAddress": {
+        "regionCode": "US",
+        "languageCode": "en",
+        "postalCode": "60014-4466",
+        "administrativeArea": "IL",
+        "locality": "Crystal Lake",
+        "addressLines": [
+          "135 Beardsley St"
+        ]
+      },
+      "addressComponents": [
+        {
+          "componentName": {
+            "text": "135",
+            "languageCode": "en"
+          },
+          "componentType": "street_number",
+          "confirmationLevel": "CONFIRMED"
+        },
+        {
+          "componentName": {
+            "text": "Beardsley Street",
+            "languageCode": "en"
+          },
+          "componentType": "route",
+          "confirmationLevel": "CONFIRMED"
+        },
+        {
+          "componentName": {
+            "text": "Crystal Lake",
+            "languageCode": "en"
+          },
+          "componentType": "locality",
+          "confirmationLevel": "CONFIRMED"
+        },
+        {
+          "componentName": {
+            "text": "IL",
+            "languageCode": "en"
+          },
+          "componentType": "administrative_area_level_1",
+          "confirmationLevel": "CONFIRMED"
+        },
+        {
+          "componentName": {
+            "text": "60014"
+          },
+          "componentType": "postal_code",
+          "confirmationLevel": "CONFIRMED"
+        },
+        {
+          "componentName": {
+            "text": "USA",
+            "languageCode": "en"
+          },
+          "componentType": "country",
+          "confirmationLevel": "CONFIRMED",
+          "inferred": true
+        },
+        {
+          "componentName": {
+            "text": "4466"
+          },
+          "componentType": "postal_code_suffix",
+          "confirmationLevel": "CONFIRMED",
+          "inferred": true
+        }
+      ],
+      "missingComponentTypes": [
+        "subpremise"
+      ]
+    },
+    "geocode": {
+      "location": {
+        "latitude": 42.2443951,
+        "longitude": -88.3155978
+      },
+      "plusCode": {
+        "globalCode": "86JH6MVM+QQ"
+      },
+      "bounds": {
+        "low": {
+          "latitude": 42.2443397,
+          "longitude": -88.3157585
+        },
+        "high": {
+          "latitude": 42.2444711,
+          "longitude": -88.3154998
+        }
+      },
+      "featureSizeMeters": 15.69716,
+      "placeId": "ChIJhQitbZhyD4gROFoOYm6lO-g",
+      "placeTypes": [
+        "premise"
+      ]
+    },
+    "metadata": {
+      "business": true,
+      "poBox": false
+    },
+    "uspsData": {
+      "standardizedAddress": {
+        "firstAddressLine": "135 BEARDSLEY ST",
+        "cityStateZipAddressLine": "CRYSTAL LAKE IL 60014-4466",
+        "city": "CRYSTAL LAKE",
+        "state": "IL",
+        "zipCode": "60014",
+        "zipCodeExtension": "4466"
+      },
+      "deliveryPointCode": "99",
+      "deliveryPointCheckDigit": "1",
+      "dpvConfirmation": "D",
+      "dpvFootnote": "AAN1",
+      "dpvCmra": "N",
+      "dpvVacant": "N",
+      "dpvNoStat": "Y",
+      "carrierRoute": "C013",
+      "carrierRouteIndicator": "D",
+      "postOfficeCity": "CRYSTAL LAKE",
+      "postOfficeState": "IL",
+      "fipsCountyCode": "111",
+      "county": "MCHENRY",
+      "elotNumber": "0110",
+      "elotFlag": "A",
+      "addressRecordType": "H",
+      "defaultAddress": true
+    }
+  },
+  "responseId": "510a3794-f01b-4829-a8af-a6dfd9ca1891"
+}
